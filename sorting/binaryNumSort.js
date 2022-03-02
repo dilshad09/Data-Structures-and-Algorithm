@@ -1,16 +1,44 @@
-var threeSum = function(nums) {
-    let ans  = []
-    
-    for(let i=0; i<nums.length; i++){
-        for(let j=0; j<nums.length; j++){
-            for(let k=0; k<nums.length; k++){
-                if((i !=j && i !=k && j !=k) && (nums[i] + nums[j]+nums[k]) ==0 ){
-                    ans.push([nums[i],nums[j],nums[k]])
-                }
-            }
-        }
+// let arr = [0,1,0,1,0,0,1,1,1,0]
+// let i=0; 
+// let j = arr.length-1;
+// while(i<=j){
+//     if(arr[i]==0 ){
+//         i++;
+//     }else if(arr[i] ==0 && arr[j] ==0){
+//         i++;
+//     }else if(arr[i] ==0 && arr[j] == 1){
+//         i++;
+//         j--;
+//     }else if(arr[i] ==1 && arr[j] ==0){
+//         [arr[i], arr[j]] = [arr[j], arr[i]];
+//         i++;
+//         j--;
+//     }else if(arr[i] ==1 && arr[j] ==1){
+//         j--;
+//     }
+// }
+// console.log(arr)
+
+
+// descending order 
+
+let arr = [0,1,0,1,0,0,1,1,1,0]
+let i=0; 
+let j = arr.length-1;
+while(i<=j){
+    if(arr[i]==1 ){
+        i++;
+    }else if(arr[i] ==0 && arr[j] ==0){
+        j--;
+    }else if(arr[i] ==1 && arr[j] == 0){
+        i++;
+        j--;
+    }else if(arr[i] ==0 && arr[j] ==1){
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        i++;
+        j--;
+    }else if(arr[i] ==1 && arr[j] ==1){
+        i++;
     }
-    return [...new Set(ans)]
-};
-let nums = [-1,0,1,2,-1,-4]
-console.log(threeSum(nums))
+}
+console.log(arr)

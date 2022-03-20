@@ -9,16 +9,34 @@ function runProgram(input) {
       console.log(findClosestV(n, v, arr))
   }
     function findClosestV(n, v, arr){
-        for(let i=0; i<n-2; i++){
-            let ans = arr[i] + arr[i+1] + arr[i+2];
-            console.log(ans)
-            if(ans == v){
-               
-                return arr[i];
-            }
+      let closestSum = Number.MIN_SAFE_INTEGER;
+      let minDiff = Number.MAX_SAFE_INTEGER;
+     arr.sort((a,b)=>{
+       return a - b;
+     })
 
+        for(let i=0; i<n-2; i++){ 
+          let start = i+1;
+          let end = arr.length - 1;
+          while(start < end){
+            let tripletSum = arr[i] + arr[start] + arr[end];
+            if(tripletSum === v) {
+              return tripletSum;
+            }
+            else if((Math.abs(tripletSum - v ) <= minDiff) && tripletSum > closestSum){
+              minDiff = Math.abs(tripletSum - v);
+              closestSum = tripletSum;
+            
+            }
+            
+             if(tripletSum < v){
+              start++;
+            }else{
+              end--;
+            }
+           }
         }
-       
+      return closestSum;
     }
 }
   

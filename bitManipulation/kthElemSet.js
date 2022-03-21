@@ -1,6 +1,20 @@
 
 function runProgram(input) {
-  
+  input = input.trim().split("\n");
+  let test = +input[0];
+  let line = 1;
+
+  for(let i=0; i<test; i++){
+    let [n,k] = input[line++].trim().split(" ").map(Number);
+    kthBit(n,k)
+  }
+  function kthBit(n,k){
+       if((n & 1 << k) === 0){
+         console.log("No");
+       }else{
+         console.log("Yes")
+       }
+  }
 }
   
   if (process.env.USERNAME === 'd') {

@@ -68,3 +68,9 @@ function runProgram(input) {
   
 
   
+// let arr = [1,2,3]
+// let arrr = []
+// let temp = arr;
+// arr = arrr;
+// arrr = temp;
+// console.log(arrr)

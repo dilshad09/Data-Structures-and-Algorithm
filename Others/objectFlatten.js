@@ -88,24 +88,76 @@
 // }
 
 
-input = "grrrabcdepghijhdiwhohfbvadsdabcdepghij"
-output = ["abcdepghij"]
-// find string which has length 10 and its repeating itself more than one time.
-let obj = {};
-let bool = true;
-for(let i=0; i<input.length; i++){
-    let s = "";
-    for(let k=i; k<input.length; k++){
-        s += input[k]
-        if(s.length === 10){
-            if(obj[s] === undefined){
-                obj[s] = 1;
-            }else{
-                obj[s]++;
-            }
+// input = "grrrabcdepghijhdiwhohfbvadsdabcdepghij"
+// output = ["abcdepghij"]
+// // find string which has length 10 and its repeating itself more than one time.
+// let obj = {};
+// let bool = true;
+// for(let i=0; i<input.length; i++){
+//     let s = "";
+//     for(let k=i; k<input.length; k++){
+//         s += input[k]
+//         if(s.length === 10){
+//             if(obj[s] === undefined){
+//                 obj[s] = 1;
+//             }else{
+//                 obj[s]++;
+//             }
            
-        }
+//         }
         
-    }
+//     }
+// }
+// console.log(obj)
+
+
+let obj = {
+    a:{
+        b:{
+            c:{
+                d:{
+                    e:{
+                        f:{
+                            g:{
+                                h:{
+                                    i:[1,2,3]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    b:{
+        c:{
+            d:{
+                e:{
+                    f:{
+                        g:{
+                            h:{
+                                i:"Great"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    
 }
-console.log(obj)
+
+console.log(flattenObject(obj, "", {}))
+
+function flattenObject(obj, parentKey, result){
+
+    for(let key in obj){
+        let refreshKey = parentKey ? parentKey+ "-"+ key : key;
+        if(typeof obj[key] === 'object' && !Array.isArray(obj[key] && obj[key])){
+            flattenObject(obj[key], refreshKey, result)
+        }else{
+            result[refreshKey] = obj[key]
+        }
+    }
+    return result;
+}
